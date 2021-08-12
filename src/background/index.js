@@ -1,17 +1,16 @@
-(function () {
-  'use strict';
+(async function () {
   console.log("Minimizing Thunderbird..");
-  var minimizeAll = function () {
-    browser.windows.getAll().then((wins) => {
-      wins.forEach((w) => {
-        let info = { state: "minimized" };
-        browser.windows.update(w.id, info);
-      });
-    });
-    console.log("All windows minimized!");
+  const minimizeWindow = async function (w) {
+    console.log("window created");
+    console.log(w);
+    let info = { state: "minimized" };
+    if (w.id && w.type === "normal" && w.state === "normal") {
+      await browser.windows.update(w.id, info);
+    }
   };
-
-  browser.windows.onCreated = setTimeout(() => {
-    minimizeAll();
-  }, 200);
-})();
+  await browser.windows.onCreated.addListener(minimizeWindow);
+  const windows = await browser.windows.getAll()
+  for (let w of windows) {
+    await minimizeWindow(w);
+  }
+})().catch(console.error);

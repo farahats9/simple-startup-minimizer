@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Simple Startup Minimizer",
     "description": "This extension will minimize Thunderbird on startup, it is very simple and I didn't put much work into it but it should work on all platforms. Please let me know if you want more features added into it.",
-    "version": "0.4",
+    "version": "0.5",
     "author": "Mohamed Farahat",
     "applications": {
         "gecko": {
