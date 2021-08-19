@@ -4,7 +4,7 @@
     console.log("window created");
     console.log(w);
     let info = { state: "minimized" };
-    if (w.id && w.type === "normal" && w.state === "normal") {
+    if (w.id && w.type === "normal" && (w.state === "normal" || w.state === "maximized")) {
       await browser.windows.update(w.id, info);
     }
   };
